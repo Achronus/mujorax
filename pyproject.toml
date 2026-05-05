@@ -1,0 +1,53 @@
+[project]
+name = "mujorax"
+version = "0.1.0"
+description = "A JAX-native MuJoCo environment suite for Envrax."
+authors = [{ name = "Ryan Partridge", email = "codemonkey37@proton.me" }]
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.13,<4.0"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+dependencies = ["envrax>=0.1.4"]
+
+[project.urls]
+Homepage = "https://github.com/Achronus/mujorax"
+Documentation = "https://mujorax.achronus.dev/"
+Repository = "https://github.com/Achronus/mujorax"
+
+[dependency-groups]
+docs = ["mkdocs-material>=9.7.6", "mkdocstrings-python>=2.0.3"]
+test = [
+    "pytest>=9.0.2",
+    "pytest-xdist>=3.8.0",
+    "imageio>=2.37.3",
+    "imageio-ffmpeg>=0.6.0",
+    "pillow>=12.2.0",
+    "pytest-cov>=7.1.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["mujorax"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = [".venv"]
+addopts = "-n auto"
+filterwarnings = ["ignore::UserWarning:jax", "ignore::UserWarning:jaxlib"]
