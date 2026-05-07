@@ -6,11 +6,17 @@ from envrax import EnvSpec, EnvSuite
 from mujorax.envs import (
     AcrobotSwingupEnv,
     AcrobotSwingupSparseEnv,
+    BallInCupEnv,
     CartpoleBalanceEnv,
     CartpoleBalanceSparseEnv,
     CartpoleSwingupEnv,
     CartpoleSwingupSparseEnv,
+    CheetahRunEnv,
+    FishSwimEnv,
     MjxPlaygroundConfig,
+    PendulumSwingupEnv,
+    PointMassEnv,
+    SwimmerSwimmer6Env,
 )
 
 
@@ -55,6 +61,11 @@ class DmControlSuite(EnvSuite):
                 default_config=MjxPlaygroundConfig(),
             ),
             EnvSpec(
+                name="ball_in_cup",
+                env_class=BallInCupEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
                 name="cartpole_balance",
                 env_class=CartpoleBalanceEnv,
                 default_config=MjxPlaygroundConfig(),
@@ -72,6 +83,31 @@ class DmControlSuite(EnvSuite):
             EnvSpec(
                 name="cartpole_swingup_sparse",
                 env_class=CartpoleSwingupSparseEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="cheetah_run",
+                env_class=CheetahRunEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="fish_swim",
+                env_class=FishSwimEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="pendulum_swingup",
+                env_class=PendulumSwingupEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="point_mass",
+                env_class=PointMassEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="swimmer_swimmer6",
+                env_class=SwimmerSwimmer6Env,
                 default_config=MjxPlaygroundConfig(),
             ),
         ]
