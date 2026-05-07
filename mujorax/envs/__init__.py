@@ -3,6 +3,7 @@ from mujorax.envs._base import (
     MjxPlaygroundEnv,
     MjxPlaygroundState,
 )
+from mujorax.envs.acrobot import AcrobotSwingupEnv, AcrobotSwingupSparseEnv
 from mujorax.envs.cartpole import (
     CartpoleBalanceEnv,
     CartpoleBalanceSparseEnv,
@@ -11,6 +12,8 @@ from mujorax.envs.cartpole import (
 )
 
 __all__ = [
+    "AcrobotSwingupEnv",
+    "AcrobotSwingupSparseEnv",
     "CartpoleBalanceEnv",
     "CartpoleBalanceSparseEnv",
     "CartpoleSwingupEnv",

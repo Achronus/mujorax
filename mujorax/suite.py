@@ -4,6 +4,8 @@ from typing import List
 from envrax import EnvSpec, EnvSuite
 
 from mujorax.envs import (
+    AcrobotSwingupEnv,
+    AcrobotSwingupSparseEnv,
     CartpoleBalanceEnv,
     CartpoleBalanceSparseEnv,
     CartpoleSwingupEnv,
@@ -42,6 +44,16 @@ class DmControlSuite(EnvSuite):
     )
     specs: List[EnvSpec] = field(
         default_factory=lambda: [
+            EnvSpec(
+                name="acrobot_swingup",
+                env_class=AcrobotSwingupEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="acrobot_swingup_sparse",
+                env_class=AcrobotSwingupSparseEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
             EnvSpec(
                 name="cartpole_balance",
                 env_class=CartpoleBalanceEnv,
