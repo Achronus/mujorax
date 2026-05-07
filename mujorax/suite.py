@@ -12,15 +12,24 @@ from mujorax.envs import (
     CartpoleSwingupEnv,
     CartpoleSwingupSparseEnv,
     CheetahRunEnv,
+    FingerSpinEnv,
+    FingerTurnEasyEnv,
+    FingerTurnHardEnv,
     FishSwimEnv,
     HopperHopEnv,
     HopperStandEnv,
+    HumanoidRunEnv,
+    HumanoidStandEnv,
+    HumanoidWalkEnv,
     MjxPlaygroundConfig,
     PendulumSwingupEnv,
     PointMassEnv,
     ReacherEasyEnv,
     ReacherHardEnv,
     SwimmerSwimmer6Env,
+    WalkerRunEnv,
+    WalkerStandEnv,
+    WalkerWalkEnv,
 )
 
 
@@ -95,6 +104,21 @@ class DmControlSuite(EnvSuite):
                 default_config=MjxPlaygroundConfig(),
             ),
             EnvSpec(
+                name="finger_spin",
+                env_class=FingerSpinEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="finger_turn_easy",
+                env_class=FingerTurnEasyEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="finger_turn_hard",
+                env_class=FingerTurnHardEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
                 name="fish_swim",
                 env_class=FishSwimEnv,
                 default_config=MjxPlaygroundConfig(),
@@ -107,6 +131,21 @@ class DmControlSuite(EnvSuite):
             EnvSpec(
                 name="hopper_stand",
                 env_class=HopperStandEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="humanoid_run",
+                env_class=HumanoidRunEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="humanoid_stand",
+                env_class=HumanoidStandEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="humanoid_walk",
+                env_class=HumanoidWalkEnv,
                 default_config=MjxPlaygroundConfig(),
             ),
             EnvSpec(
@@ -132,6 +171,21 @@ class DmControlSuite(EnvSuite):
             EnvSpec(
                 name="swimmer_swimmer6",
                 env_class=SwimmerSwimmer6Env,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="walker_run",
+                env_class=WalkerRunEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="walker_stand",
+                env_class=WalkerStandEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="walker_walk",
+                env_class=WalkerWalkEnv,
                 default_config=MjxPlaygroundConfig(),
             ),
         ]
