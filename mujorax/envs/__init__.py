@@ -1,24 +1,20 @@
-from envrax import register_suite
-
-from mujorax.envs import (
-    CartpoleBalanceEnv,
-    CartpoleBalanceSparseEnv,
-    CartpoleSwingupEnv,
-    CartpoleSwingupSparseEnv,
+from mujorax.envs._base import (
     MjxPlaygroundConfig,
     MjxPlaygroundEnv,
     MjxPlaygroundState,
 )
-from mujorax.suite import DmControlSuite
-
-register_suite(DmControlSuite())
+from mujorax.envs.cartpole import (
+    CartpoleBalanceEnv,
+    CartpoleBalanceSparseEnv,
+    CartpoleSwingupEnv,
+    CartpoleSwingupSparseEnv,
+)
 
 __all__ = [
     "CartpoleBalanceEnv",
     "CartpoleBalanceSparseEnv",
     "CartpoleSwingupEnv",
     "CartpoleSwingupSparseEnv",
-    "DmControlSuite",
     "MjxPlaygroundConfig",
     "MjxPlaygroundEnv",
     "MjxPlaygroundState",

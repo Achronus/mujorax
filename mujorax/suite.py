@@ -40,4 +40,27 @@ class DmControlSuite(EnvSuite):
     required_packages: List[str] = field(
         default_factory=lambda: ["mujoco", "mujoco_mjx", "mujoco_playground"]
     )
-    specs: List[EnvSpec] = field(default_factory=lambda: [])
+    specs: List[EnvSpec] = field(
+        default_factory=lambda: [
+            EnvSpec(
+                name="cartpole_balance",
+                env_class=CartpoleBalanceEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="cartpole_balance_sparse",
+                env_class=CartpoleBalanceSparseEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="cartpole_swingup",
+                env_class=CartpoleSwingupEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="cartpole_swingup_sparse",
+                env_class=CartpoleSwingupSparseEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+        ]
+    )
