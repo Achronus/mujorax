@@ -13,6 +13,7 @@ def test_reset_step_shapes(env_id: str, rng: jax.Array) -> None:
     obs, state = env.reset(rng)
 
     assert obs.shape == env.observation_space.shape
+    assert obs.dtype == env.observation_space.dtype
     assert state.done.dtype == jnp.bool_
     assert state.step.dtype == jnp.int32
 
@@ -20,6 +21,7 @@ def test_reset_step_shapes(env_id: str, rng: jax.Array) -> None:
     obs, state, reward, done, info = env.step(state, action)
 
     assert obs.shape == env.observation_space.shape
+    assert obs.dtype == env.observation_space.dtype
     assert reward.shape == ()
     assert done.shape == ()
     assert state.step == 1
