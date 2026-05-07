@@ -13,8 +13,10 @@ from mujorax.envs.cartpole import (
 )
 from mujorax.envs.cheetah import CheetahRunEnv
 from mujorax.envs.fish import FishSwimEnv
+from mujorax.envs.hopper import HopperHopEnv, HopperStandEnv
 from mujorax.envs.pendulum import PendulumSwingupEnv
 from mujorax.envs.point_mass import PointMassEnv
+from mujorax.envs.reacher import ReacherEasyEnv, ReacherHardEnv
 from mujorax.envs.swimmer import SwimmerSwimmer6Env
 
 __all__ = [
@@ -27,10 +29,14 @@ __all__ = [
     "CartpoleSwingupSparseEnv",
     "CheetahRunEnv",
     "FishSwimEnv",
+    "HopperHopEnv",
+    "HopperStandEnv",
     "MjxPlaygroundConfig",
     "MjxPlaygroundEnv",
     "MjxPlaygroundState",
     "PendulumSwingupEnv",
     "PointMassEnv",
+    "ReacherEasyEnv",
+    "ReacherHardEnv",
     "SwimmerSwimmer6Env",
 ]

@@ -13,9 +13,13 @@ from mujorax.envs import (
     CartpoleSwingupSparseEnv,
     CheetahRunEnv,
     FishSwimEnv,
+    HopperHopEnv,
+    HopperStandEnv,
     MjxPlaygroundConfig,
     PendulumSwingupEnv,
     PointMassEnv,
+    ReacherEasyEnv,
+    ReacherHardEnv,
     SwimmerSwimmer6Env,
 )
 
@@ -96,6 +100,16 @@ class DmControlSuite(EnvSuite):
                 default_config=MjxPlaygroundConfig(),
             ),
             EnvSpec(
+                name="hopper_hop",
+                env_class=HopperHopEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="hopper_stand",
+                env_class=HopperStandEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
                 name="pendulum_swingup",
                 env_class=PendulumSwingupEnv,
                 default_config=MjxPlaygroundConfig(),
@@ -103,6 +117,16 @@ class DmControlSuite(EnvSuite):
             EnvSpec(
                 name="point_mass",
                 env_class=PointMassEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="reacher_easy",
+                env_class=ReacherEasyEnv,
+                default_config=MjxPlaygroundConfig(),
+            ),
+            EnvSpec(
+                name="reacher_hard",
+                env_class=ReacherHardEnv,
                 default_config=MjxPlaygroundConfig(),
             ),
             EnvSpec(
