@@ -29,3 +29,13 @@ hide:
 </div>
 
 ---
+
+## Acknowledgements
+
+Mujorax wraps the work of several upstream projects:
+
+- [MuJoCo Playground](https://github.com/google-deepmind/mujoco_playground) (Apache 2.0) — the underlying environment implementations.
+- [MuJoCo](https://github.com/google-deepmind/mujoco) and [MJX](https://github.com/google-deepmind/mujoco) (Apache 2.0) — the physics engine and JAX bindings.
+- [Envrax](https://github.com/Achronus/envrax) (MIT) — the registry and base environment API.
+
+Locomotion and Manipulation environments auto-download [`mujoco_menagerie`](https://github.com/google-deepmind/mujoco_menagerie) on first load. That repository's robot models ship under per-model licenses, including some with non-commercial-use restrictions; refer to it directly when using affected environments.
