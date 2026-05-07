@@ -22,7 +22,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "envrax>=0.1.4",
+    "envrax==0.1.5",
     "playground>=0.2.0",
 ]
 
