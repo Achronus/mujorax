@@ -1,0 +1,131 @@
+site_name: Mujorax
+site_description: A JAX-native MuJoCo environment suite for Envrax.
+site_url: https://mujorax.achronus.dev/
+
+theme:
+  name: material
+  logo: assets/imgs/favicon.png
+  favicon: assets/imgs/favicon.png
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - scheme: slate
+      primary: cyan
+      accent: cyan
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.top
+    - navigation.path
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+strict: false
+
+repo_url: https://github.com/Achronus/mujorax
+repo_name: Achronus/mujorax
+edit_uri: edit/main/docs
+
+plugins:
+  - search
+  - mkdocstrings:
+      custom_templates: docs/_templates
+      handlers:
+        python:
+          options:
+            docstring_style: numpy
+            docstring_options:
+              warn_unknown_params: false
+            show_source: true
+            members_order: source
+            show_root_heading: true
+            show_symbol_type_heading: true
+            extensions:
+              - docs/_extensions/docstring_polish.py:DocstringPolish
+          inventories:
+            - https://docs.python.org/3.13/objects.inv
+            - https://numpy.org/doc/stable/objects.inv
+            - https://docs.jax.dev/en/latest/objects.inv
+            - https://envrax.achronus.dev/objects.inv
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Install: getting_started/install.md
+    - Quickstart: getting_started/quickstart.md
+  - Tutorials:
+    - Configuration: tutorials/configuration.md
+    - Rendering: tutorials/rendering.md
+  - Environments:
+    - Overview: environments/index.md
+    - Acrobot: environments/acrobot.md
+    - Ball in Cup: environments/ball_in_cup.md
+    - Cartpole: environments/cartpole.md
+    - Cheetah: environments/cheetah.md
+    - Finger: environments/finger.md
+    - Fish: environments/fish.md
+    - Hopper: environments/hopper.md
+    - Humanoid: environments/humanoid.md
+    - Pendulum: environments/pendulum.md
+    - Point Mass: environments/point_mass.md
+    - Reacher: environments/reacher.md
+    - Swimmer: environments/swimmer.md
+    - Walker: environments/walker.md
+  - API Reference:
+    - Environments:
+      - Base: api/environments/base.md
+      - Acrobot: api/environments/acrobot.md
+      - Ball in Cup: api/environments/ball_in_cup.md
+      - Cartpole: api/environments/cartpole.md
+      - Cheetah: api/environments/cheetah.md
+      - Finger: api/environments/finger.md
+      - Fish: api/environments/fish.md
+      - Hopper: api/environments/hopper.md
+      - Humanoid: api/environments/humanoid.md
+      - Pendulum: api/environments/pendulum.md
+      - Point Mass: api/environments/point_mass.md
+      - Reacher: api/environments/reacher.md
+      - Swimmer: api/environments/swimmer.md
+      - Walker: api/environments/walker.md
+    - Registry: api/registry.md
+  - License: license.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Achronus/mujorax
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/mujorax
+
+extra_css:
+  - assets/css/icons.css
+
+markdown_extensions:
+  - attr_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - tables
+  - md_in_html
+  - footnotes
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      pygments_lang_class: true
+      auto_title: true
+      linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.arithmatex:
+      generic: true
+  - toc:
+      permalink: true
+      title: Page Contents
