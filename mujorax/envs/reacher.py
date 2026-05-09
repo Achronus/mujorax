@@ -7,6 +7,11 @@ class ReacherEasyEnv(MjxPlaygroundEnv):
 
     Two-link planar arm with a large target; dense reward proportional
     to the negative distance from the fingertip to the target.
+
+    Parameters
+    ----------
+    config : MjxPlaygroundConfig (optional)
+        Static configuration. Defaults to `MjxPlaygroundConfig()`.
     """
 
     _PLAYGROUND_NAME = "ReacherEasy"
@@ -18,6 +23,11 @@ class ReacherHardEnv(MjxPlaygroundEnv):
 
     Same arm as `ReacherEasy` with a smaller target; identical
     observation/action shapes.
+
+    Parameters
+    ----------
+    config : MjxPlaygroundConfig (optional)
+        Static configuration. Defaults to `MjxPlaygroundConfig()`.
     """
 
     _PLAYGROUND_NAME = "ReacherHard"

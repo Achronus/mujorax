@@ -7,6 +7,11 @@ class HumanoidStandEnv(MjxPlaygroundEnv):
 
     21-DoF humanoid; dense reward for keeping the head above a minimum
     standing height while remaining stationary.
+
+    Parameters
+    ----------
+    config : MjxPlaygroundConfig (optional)
+        Static configuration. Defaults to `MjxPlaygroundConfig()`.
     """
 
     _PLAYGROUND_NAME = "HumanoidStand"
@@ -18,6 +23,11 @@ class HumanoidWalkEnv(MjxPlaygroundEnv):
 
     Same body as `HumanoidStand`; dense reward for matching a target
     walking speed while staying upright.
+
+    Parameters
+    ----------
+    config : MjxPlaygroundConfig (optional)
+        Static configuration. Defaults to `MjxPlaygroundConfig()`.
     """
 
     _PLAYGROUND_NAME = "HumanoidWalk"
@@ -29,6 +39,11 @@ class HumanoidRunEnv(MjxPlaygroundEnv):
 
     Same body as `HumanoidStand`; dense reward for matching a target
     running speed while staying upright.
+
+    Parameters
+    ----------
+    config : MjxPlaygroundConfig (optional)
+        Static configuration. Defaults to `MjxPlaygroundConfig()`.
     """
 
     _PLAYGROUND_NAME = "HumanoidRun"

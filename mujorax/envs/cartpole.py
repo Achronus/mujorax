@@ -7,6 +7,11 @@ class CartpoleBalanceEnv(MjxPlaygroundEnv):
 
     Cart starts near upright; dense reward for keeping the pole upright
     and the cart centred.
+
+    Parameters
+    ----------
+    config : MjxPlaygroundConfig (optional)
+        Static configuration. Defaults to `MjxPlaygroundConfig()`.
     """
 
     _PLAYGROUND_NAME = "CartpoleBalance"
@@ -18,6 +23,11 @@ class CartpoleBalanceSparseEnv(MjxPlaygroundEnv):
 
     Cart starts near upright; sparse reward (binary) for keeping the
     pole upright within tolerance.
+
+    Parameters
+    ----------
+    config : MjxPlaygroundConfig (optional)
+        Static configuration. Defaults to `MjxPlaygroundConfig()`.
     """
 
     _PLAYGROUND_NAME = "CartpoleBalanceSparse"
@@ -29,6 +39,11 @@ class CartpoleSwingupEnv(MjxPlaygroundEnv):
 
     Cart starts with the pole hanging down; dense reward for swinging
     the pole up and balancing it.
+
+    Parameters
+    ----------
+    config : MjxPlaygroundConfig (optional)
+        Static configuration. Defaults to `MjxPlaygroundConfig()`.
     """
 
     _PLAYGROUND_NAME = "CartpoleSwingup"
@@ -40,6 +55,11 @@ class CartpoleSwingupSparseEnv(MjxPlaygroundEnv):
 
     Cart starts with the pole hanging down; sparse reward for getting
     the pole into the upright tolerance band.
+
+    Parameters
+    ----------
+    config : MjxPlaygroundConfig (optional)
+        Static configuration. Defaults to `MjxPlaygroundConfig()`.
     """
 
     _PLAYGROUND_NAME = "CartpoleSwingupSparse"

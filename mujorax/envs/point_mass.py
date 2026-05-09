@@ -7,6 +7,11 @@ class PointMassEnv(MjxPlaygroundEnv):
 
     Planar point mass actuated in 2D; dense reward for moving toward a
     randomised target.
+
+    Parameters
+    ----------
+    config : MjxPlaygroundConfig (optional)
+        Static configuration. Defaults to `MjxPlaygroundConfig()`.
     """
 
     _PLAYGROUND_NAME = "PointMass"

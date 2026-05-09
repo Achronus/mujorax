@@ -7,6 +7,11 @@ class WalkerStandEnv(MjxPlaygroundEnv):
 
     Planar bipedal walker; dense reward for keeping the torso upright
     above a minimum standing height.
+
+    Parameters
+    ----------
+    config : MjxPlaygroundConfig (optional)
+        Static configuration. Defaults to `MjxPlaygroundConfig()`.
     """
 
     _PLAYGROUND_NAME = "WalkerStand"
@@ -18,6 +23,11 @@ class WalkerWalkEnv(MjxPlaygroundEnv):
 
     Same body as `WalkerStand`; dense reward for matching a target
     walking speed while staying upright.
+
+    Parameters
+    ----------
+    config : MjxPlaygroundConfig (optional)
+        Static configuration. Defaults to `MjxPlaygroundConfig()`.
     """
 
     _PLAYGROUND_NAME = "WalkerWalk"
@@ -29,6 +39,11 @@ class WalkerRunEnv(MjxPlaygroundEnv):
 
     Same body as `WalkerStand`; dense reward for matching a target
     running speed while staying upright.
+
+    Parameters
+    ----------
+    config : MjxPlaygroundConfig (optional)
+        Static configuration. Defaults to `MjxPlaygroundConfig()`.
     """
 
     _PLAYGROUND_NAME = "WalkerRun"

@@ -7,6 +7,11 @@ class BallInCupEnv(MjxPlaygroundEnv):
 
     Planar ball attached by a tether to a cup; sparse reward when the
     ball is caught inside the cup.
+
+    Parameters
+    ----------
+    config : MjxPlaygroundConfig (optional)
+        Static configuration. Defaults to `MjxPlaygroundConfig()`.
     """
 
     _PLAYGROUND_NAME = "BallInCup"
