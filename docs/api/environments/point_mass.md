@@ -1,0 +1,3 @@
+# Point Mass
+
+::: mujorax.PointMassEnv
