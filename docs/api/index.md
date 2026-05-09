@@ -19,7 +19,7 @@ Here's a quick overview:
 
     Learn how to use Mujorax, your way!
 
-    [:octicons-arrow-right-24: Start learning](../tutorials/configuration.md)
+    [:octicons-arrow-right-24: Start learning](../tutorials/index.md)
 
 -   :fontawesome-solid-cube:{ .lg .middle } __Environments__
 

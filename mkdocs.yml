@@ -57,8 +57,11 @@ nav:
   - Getting Started: 
     - Getting Started: starting/index.md
   - Tutorials:
-    - Configuration: tutorials/configuration.md
-    - Rendering: tutorials/rendering.md
+    - Tutorials: tutorials/index.md
+    - Essentials:
+      - Using Environments: tutorials/essentials/using-environments.md
+      - Configuration: tutorials/essentials/configuration.md
+      - Rendering: tutorials/essentials/rendering.md
   - Environments:
     - Overview: environments/index.md
     - Acrobot: environments/acrobot.md

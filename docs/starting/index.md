@@ -51,7 +51,7 @@ Then, install the package:
     poetry add mujorax
     ```
 
-If you're new, or want a refresher, head on over to the [tutorials](../tutorials/configuration.md) or try out the example below!
+If you're new, or want a refresher, head on over to the [tutorials](../tutorials/index.md) or try out the example below!
 
 ## Example Usage
 
@@ -140,7 +140,7 @@ This code should work "as is".
 
     Learn how to use Mujorax, your way!
 
-    [:octicons-arrow-right-24: Start learning](../tutorials/configuration.md)
+    [:octicons-arrow-right-24: Start learning](../tutorials/index.md)
 
 -   :fontawesome-solid-cube:{ .lg .middle } __Environments__
 
