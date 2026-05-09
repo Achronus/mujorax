@@ -75,6 +75,7 @@ nav:
     - Swimmer: environments/swimmer.md
     - Walker: environments/walker.md
   - API Reference:
+    - API Reference: api/index.md
     - Environments:
       - Base: api/environments/base.md
       - Acrobot: api/environments/acrobot.md

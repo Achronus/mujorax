@@ -60,7 +60,7 @@ Mujorax wouldn't be possible without these incredible projects:
 
     What are you waiting for?!
 
-    [:octicons-arrow-right-24: Get Started](getting_started/install.md)
+    [:octicons-arrow-right-24: Get Started](starting/index.md)
 
 -   :material-scale-balance:{ .lg .middle } __Open Source, MIT__
 
