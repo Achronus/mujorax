@@ -12,6 +12,7 @@ A 3D free-swimming fish with five actuated joints in a water-like medium.
 | Action space | `Box(-1.0, 1.0, (5,), float32)` |
 | Observation space | `Box(-inf, inf, (24,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.04, "sim_dt": 0.002, "naconmax": 0, "njmax": 25}` |
 
 ### Description
 

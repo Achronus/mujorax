@@ -12,6 +12,7 @@ A single-link pendulum hanging from a fixed pivot.
 | Action space | `Box(-1.0, 1.0, (1,), float32)` |
 | Observation space | `Box(-inf, inf, (3,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.02, "sim_dt": 0.01, "naconmax": 0, "njmax": 0}` |
 
 ### Description
 

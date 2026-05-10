@@ -12,6 +12,7 @@ A planar bipedal cheetah-style runner. The agent torques 6 actuators across the 
 | Action space | `Box(-1.0, 1.0, (6,), float32)` |
 | Observation space | `Box(-inf, inf, (17,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.01, "sim_dt": 0.01, "naconmax": 100_000, "njmax": 100}` |
 
 ### Description
 

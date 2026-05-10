@@ -12,6 +12,7 @@ A two-DoF planar finger interacting with a free-rotating spinner body. The famil
 | Action space | `Box(-1.0, 1.0, (2,), float32)` |
 | Observation space | `Box(-inf, inf, (9,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.02, "sim_dt": 0.005, "naconmax": 25_000, "njmax": 50}` |
 
 ### Description
 
@@ -65,6 +66,7 @@ Upstream: [`mujoco_playground/_src/dm_control_suite/finger.py`](https://github.c
 | Action space | `Box(-1.0, 1.0, (2,), float32)` |
 | Observation space | `Box(-inf, inf, (12,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.02, "sim_dt": 0.005, "naconmax": 25_000, "njmax": 50}` |
 
 ### Description
 
@@ -120,6 +122,7 @@ Upstream: [`mujoco_playground/_src/dm_control_suite/finger.py`](https://github.c
 | Action space | `Box(-1.0, 1.0, (2,), float32)` |
 | Observation space | `Box(-inf, inf, (12,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.02, "sim_dt": 0.005, "naconmax": 25_000, "njmax": 50}` |
 
 ### Description
 

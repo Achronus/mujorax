@@ -12,6 +12,7 @@ A planar bipedal walker. Three variants share the body and dynamics; they differ
 | Action space | `Box(-1.0, 1.0, (6,), float32)` |
 | Observation space | `Box(-inf, inf, (24,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.025, "sim_dt": 0.0025, "naconmax": 50_000, "njmax": 100}` |
 
 ### Description
 
@@ -73,6 +74,7 @@ Upstream: [`mujoco_playground/_src/dm_control_suite/walker.py`](https://github.c
 | Action space | `Box(-1.0, 1.0, (6,), float32)` |
 | Observation space | `Box(-inf, inf, (24,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.025, "sim_dt": 0.0025, "naconmax": 50_000, "njmax": 100}` |
 
 ### Description
 
@@ -137,6 +139,7 @@ Upstream: [`mujoco_playground/_src/dm_control_suite/walker.py`](https://github.c
 | Action space | `Box(-1.0, 1.0, (6,), float32)` |
 | Observation space | `Box(-inf, inf, (24,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.025, "sim_dt": 0.0025, "naconmax": 50_000, "njmax": 100}` |
 
 ### Description
 

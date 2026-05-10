@@ -12,6 +12,7 @@ A planar one-legged hopper. Four actuators across the leg drive locomotion or st
 | Action space | `Box(-1.0, 1.0, (4,), float32)` |
 | Observation space | `Box(-inf, inf, (15,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.02, "sim_dt": 0.005, "naconmax": 50_000, "njmax": 50}` |
 
 ### Description
 
@@ -74,6 +75,7 @@ Upstream: [`mujoco_playground/_src/dm_control_suite/hopper.py`](https://github.c
 | Action space | `Box(-1.0, 1.0, (4,), float32)` |
 | Observation space | `Box(-inf, inf, (15,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.02, "sim_dt": 0.005, "naconmax": 50_000, "njmax": 50}` |
 
 ### Description
 

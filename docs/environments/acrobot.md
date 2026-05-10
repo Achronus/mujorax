@@ -14,6 +14,7 @@ All Acrobot variants share the same body, dynamics, and termination rule; they o
 | Action space | `Box(-1.0, 1.0, (1,), float32)` |
 | Observation space | `Box(-inf, inf, (6,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.01, "sim_dt": 0.01, "naconmax": 0, "njmax": 0}` |
 
 ### Description
 
@@ -72,6 +73,7 @@ Upstream: [`mujoco_playground/_src/dm_control_suite/acrobot.py`](https://github.
 | Action space | `Box(-1.0, 1.0, (1,), float32)` |
 | Observation space | `Box(-inf, inf, (6,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.01, "sim_dt": 0.01, "naconmax": 0, "njmax": 0}` |
 
 ### Description
 

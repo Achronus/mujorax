@@ -12,6 +12,7 @@ A two-link planar arm reaching toward a randomised target position. Two variants
 | Action space | `Box(-1.0, 1.0, (2,), float32)` |
 | Observation space | `Box(-inf, inf, (6,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.02, "sim_dt": 0.005, "naconmax": 0, "njmax": 0}` |
 
 ### Description
 
@@ -68,6 +69,7 @@ Upstream: [`mujoco_playground/_src/dm_control_suite/reacher.py`](https://github.
 | Action space | `Box(-1.0, 1.0, (2,), float32)` |
 | Observation space | `Box(-inf, inf, (6,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.02, "sim_dt": 0.005, "naconmax": 0, "njmax": 0}` |
 
 ### Description
 

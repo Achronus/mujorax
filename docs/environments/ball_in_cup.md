@@ -12,6 +12,7 @@ A planar ball-and-cup task: a ball hangs from a tether attached to a movable cup
 | Action space | `Box(-1.0, 1.0, (2,), float32)` |
 | Observation space | `Box(-inf, inf, (8,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.02, "sim_dt": 0.002, "naconmax": 10_000, "njmax": 25}` |
 
 ### Description
 

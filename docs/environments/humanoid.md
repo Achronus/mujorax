@@ -12,6 +12,7 @@ A 3D 21-DoF humanoid with full upper- and lower-body actuation. Three variants s
 | Action space | `Box(-1.0, 1.0, (21,), float32)` |
 | Observation space | `Box(-inf, inf, (67,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.025, "sim_dt": 0.005, "naconmax": 200_000, "njmax": 250}` |
 
 ### Description
 
@@ -80,6 +81,7 @@ Upstream: [`mujoco_playground/_src/dm_control_suite/humanoid.py`](https://github
 | Action space | `Box(-1.0, 1.0, (21,), float32)` |
 | Observation space | `Box(-inf, inf, (67,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.025, "sim_dt": 0.005, "naconmax": 200_000, "njmax": 250}` |
 
 ### Description
 
@@ -153,6 +155,7 @@ Upstream: [`mujoco_playground/_src/dm_control_suite/humanoid.py`](https://github
 | Action space | `Box(-1.0, 1.0, (21,), float32)` |
 | Observation space | `Box(-inf, inf, (67,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.025, "sim_dt": 0.005, "naconmax": 200_000, "njmax": 250}` |
 
 ### Description
 

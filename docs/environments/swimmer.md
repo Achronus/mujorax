@@ -12,6 +12,7 @@ A multi-link planar swimmer in a viscous fluid. Mujorax ships the canonical six-
 | Action space | `Box(-1.0, 1.0, (5,), float32)` |
 | Observation space | `Box(-inf, inf, (25,), float32)` |
 | Episode length | 1000 |
+| Config | `{"ctrl_dt": 0.03, "sim_dt": 0.003, "naconmax": 0, "njmax": 40}` |
 
 ### Description
 
