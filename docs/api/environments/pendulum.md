@@ -1,0 +1,3 @@
+# Pendulum
+
+::: mujorax.PendulumSwingupEnv

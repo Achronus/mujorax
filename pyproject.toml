@@ -21,7 +21,10 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Typing :: Typed",
 ]
-dependencies = ["envrax>=0.1.4"]
+dependencies = [
+    "envrax==0.1.5",
+    "playground>=0.2.0",
+]
 
 [project.urls]
 Homepage = "https://github.com/Achronus/mujorax"
@@ -49,5 +52,23 @@ packages = ["mujorax"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 norecursedirs = [".venv"]
-addopts = "-n auto"
-filterwarnings = ["ignore::UserWarning:jax", "ignore::UserWarning:jaxlib"]
+addopts = "-n auto --cov=mujorax --cov-report=term-missing"
+filterwarnings = [
+    "ignore::UserWarning:jax",
+    "ignore::UserWarning:jaxlib",
+    "ignore::DeprecationWarning:jaxopt",
+]
+
+[tool.coverage.run]
+source = ["mujorax"]
+branch = true
+parallel = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+exclude_also = [
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+    "@(abc\\.)?abstractmethod",
+]
