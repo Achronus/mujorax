@@ -237,7 +237,12 @@ class MjxPlaygroundEnv(JaxEnv[Box, Box, MjxPlaygroundState, MjxPlaygroundConfig]
 
         return self._extract_obs(new_pg), new_state, reward, done, info
 
-    def render(self, state: MjxPlaygroundState) -> np.ndarray:
+    def render(
+        self,
+        state: MjxPlaygroundState,
+        height: int = 240,
+        width: int = 320,
+    ) -> np.ndarray:
         """
         Render the environment state as an RGB frame.
 
@@ -245,13 +250,17 @@ class MjxPlaygroundEnv(JaxEnv[Box, Box, MjxPlaygroundState, MjxPlaygroundConfig]
         ----------
         state : MjxPlaygroundState
             Current environment state to render
+        height : int, default 240
+            Output frame height in pixels
+        width : int, default 320
+            Output frame width in pixels
 
         Returns
         -------
         frame : np.ndarray
-            uint8 RGB array of shape `(H, W, 3)`
+            uint8 RGB array of shape `(height, width, 3)`
         """
-        frames = self._env.render([state.pg_state])
+        frames = self._env.render([state.pg_state], height=height, width=width)
         return np.asarray(frames[0], dtype=np.uint8)
 
     def _reward(
