@@ -1,6 +1,6 @@
 [project]
 name = "mujorax"
-version = "0.1.0"
+version = "0.1.1"
 description = "A JAX-native MuJoCo environment suite for Envrax."
 authors = [{ name = "Ryan Partridge", email = "codemonkey37@proton.me" }]
 readme = "README.md"
@@ -22,7 +22,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "envrax==0.1.5",
+    "envrax==0.1.6",
     "playground>=0.2.0",
 ]
 

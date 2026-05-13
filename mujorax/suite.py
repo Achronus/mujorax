@@ -59,7 +59,7 @@ class DmControlSuite(EnvSuite):
     category: str = "DM Control Suite"
     version: str = "v0"
     required_packages: List[str] = field(
-        default_factory=lambda: ["mujoco", "mujoco_mjx", "mujoco_playground"]
+        default_factory=lambda: ["mujoco", "mujoco_playground"]
     )
     specs: List[EnvSpec] = field(
         default_factory=lambda: [
