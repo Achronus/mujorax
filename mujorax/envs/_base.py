@@ -28,9 +28,9 @@ class MjxPlaygroundState(EnvState):
     ----------
     rng : chex.PRNGKey
         JAX PRNG key
-    step : chex.Array
+    step : jax.Array
         Current timestep within the episode
-    done : chex.Array
+    done : jax.Array
         bool scalar — episode termination flag
     pg_state : mjx_env.State
         Full Playground environment state
@@ -103,7 +103,7 @@ class MjxPlaygroundEnv(JaxEnv[Box, Box, MjxPlaygroundState, MjxPlaygroundConfig]
 
         return overrides or None
 
-    def _extract_obs(self, pg_state: mjx_env.State) -> chex.Array:
+    def _extract_obs(self, pg_state: mjx_env.State) -> jax.Array:
         """
         Extract the observation array from a Playground state.
 
@@ -118,7 +118,7 @@ class MjxPlaygroundEnv(JaxEnv[Box, Box, MjxPlaygroundState, MjxPlaygroundConfig]
 
         Returns
         -------
-        obs : chex.Array
+        obs : jax.Array
             Observation array
 
         Raises
@@ -164,7 +164,7 @@ class MjxPlaygroundEnv(JaxEnv[Box, Box, MjxPlaygroundState, MjxPlaygroundConfig]
             dtype=jnp.float32,
         )
 
-    def reset(self, rng: chex.PRNGKey) -> Tuple[chex.Array, MjxPlaygroundState]:
+    def reset(self, rng: chex.PRNGKey) -> Tuple[jax.Array, MjxPlaygroundState]:
         """
         Set the environment to a starting state.
 
@@ -175,7 +175,7 @@ class MjxPlaygroundEnv(JaxEnv[Box, Box, MjxPlaygroundState, MjxPlaygroundConfig]
 
         Returns
         -------
-        obs : chex.Array
+        obs : jax.Array
             Initial observation
         state : MjxPlaygroundState
             Initial environment state with `rng` embedded
@@ -195,8 +195,8 @@ class MjxPlaygroundEnv(JaxEnv[Box, Box, MjxPlaygroundState, MjxPlaygroundConfig]
     def step(
         self,
         state: MjxPlaygroundState,
-        action: chex.Array,
-    ) -> Tuple[chex.Array, MjxPlaygroundState, chex.Array, chex.Array, Dict[str, Any]]:
+        action: jax.Array,
+    ) -> Tuple[jax.Array, MjxPlaygroundState, jax.Array, jax.Array, Dict[str, Any]]:
         """
         Take an action through the environment.
 
@@ -204,18 +204,18 @@ class MjxPlaygroundEnv(JaxEnv[Box, Box, MjxPlaygroundState, MjxPlaygroundConfig]
         ----------
         state : MjxPlaygroundState
             Current environment state
-        action : chex.Array
+        action : jax.Array
             Action to take in the environment
 
         Returns
         -------
-        obs : chex.Array
+        obs : jax.Array
             Observation after the step
         new_state : MjxPlaygroundState
             Updated environment state
-        reward : chex.Array
+        reward : jax.Array
             Scalar reward
-        done : chex.Array
+        done : jax.Array
             bool scalar — `True` when the episode has ended
         info : Dict[str, Any]
             Auxiliary diagnostic information
@@ -266,9 +266,9 @@ class MjxPlaygroundEnv(JaxEnv[Box, Box, MjxPlaygroundState, MjxPlaygroundConfig]
     def _reward(
         self,
         state: MjxPlaygroundState,
-        action: chex.Array,
+        action: jax.Array,
         new_pg: mjx_env.State,
-    ) -> chex.Array:
+    ) -> jax.Array:
         """
         Compute the reward for the most recent step.
 
@@ -278,14 +278,14 @@ class MjxPlaygroundEnv(JaxEnv[Box, Box, MjxPlaygroundState, MjxPlaygroundConfig]
         ----------
         state : MjxPlaygroundState
             State before the step
-        action : chex.Array
+        action : jax.Array
             Action just taken
         new_pg : mjx_env.State
             Playground state after the step
 
         Returns
         -------
-        reward : chex.Array
+        reward : jax.Array
             Scalar reward
         """
         return new_pg.reward
@@ -294,8 +294,8 @@ class MjxPlaygroundEnv(JaxEnv[Box, Box, MjxPlaygroundState, MjxPlaygroundConfig]
         self,
         state: MjxPlaygroundState,
         new_pg: mjx_env.State,
-        new_step: chex.Array,
-    ) -> chex.Array:
+        new_step: jax.Array,
+    ) -> jax.Array:
         """
         Compute the termination flag for the most recent step.
 
@@ -307,12 +307,12 @@ class MjxPlaygroundEnv(JaxEnv[Box, Box, MjxPlaygroundState, MjxPlaygroundConfig]
             State before the step
         new_pg : mjx_env.State
             Playground state after the step
-        new_step : chex.Array
+        new_step : jax.Array
             Episode timestep after the step
 
         Returns
         -------
-        done : chex.Array
+        done : jax.Array
             bool scalar — `True` when the episode has ended
         """
         return jnp.logical_or(
@@ -324,7 +324,7 @@ class MjxPlaygroundEnv(JaxEnv[Box, Box, MjxPlaygroundState, MjxPlaygroundConfig]
         self,
         state: MjxPlaygroundState,
         new_pg: mjx_env.State,
-        new_step: chex.Array,
+        new_step: jax.Array,
     ) -> Dict[str, Any]:
         """
         Build the info dict returned from `step`.
@@ -335,7 +335,7 @@ class MjxPlaygroundEnv(JaxEnv[Box, Box, MjxPlaygroundState, MjxPlaygroundConfig]
             State before the step
         new_pg : mjx_env.State
             Playground state after the step
-        new_step : chex.Array
+        new_step : jax.Array
             Episode timestep after the step
 
         Returns

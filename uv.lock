@@ -339,16 +339,16 @@ wheels = [
 
 [[package]]
 name = "envrax"
-version = "0.1.7"
+version = "0.1.8"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "chex" },
     { name = "jax" },
     { name = "tqdm" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f2/4c/3e8b0d746fab02bdd13c360bcfc203176386edd7945c90365036794a74b3/envrax-0.1.7.tar.gz", hash = "sha256:76984b9505f3853b629870884066b0cf8d938fbfa3e706f22b5a71507b0de66a", size = 235892, upload-time = "2026-05-13T16:03:43.227Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a5/56/a2945ba3937f3dbcba0e464ed09edeb06808b66dd0e4c7fb5e62b4b1c25e/envrax-0.1.8.tar.gz", hash = "sha256:4ce84db1a4dd0096fa9544b388ce7d5cba79008ed293694265e95c77f62889f8", size = 235742, upload-time = "2026-05-16T10:01:01.61Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/63/01/97eb398f7c9e0ea71d4ea6d6bc1895bb563d6ae31d984a85393a8d085af4/envrax-0.1.7-py3-none-any.whl", hash = "sha256:af0054c0eff42228024b680cc1bbee40d4c67ee4ddbd0ea447d126cce216d05a", size = 45360, upload-time = "2026-05-13T16:03:41.869Z" },
+    { url = "https://files.pythonhosted.org/packages/47/bc/3622424f59414737180e380d8f1e73a471d9e21bcd59d47f467a0d76df32/envrax-0.1.8-py3-none-any.whl", hash = "sha256:79ac1a2086d68d00775e1210c24115cd70928a4ddda40ac2f7fd80f76dafc41a", size = 45366, upload-time = "2026-05-16T10:01:03.171Z" },
 ]
 
 [[package]]
@@ -1244,7 +1244,7 @@ wheels = [
 
 [[package]]
 name = "mujorax"
-version = "0.1.2"
+version = "0.1.3"
 source = { editable = "." }
 dependencies = [
     { name = "envrax" },
@@ -1267,7 +1267,7 @@ test = [
 
 [package.metadata]
 requires-dist = [
-    { name = "envrax", specifier = "==0.1.7" },
+    { name = "envrax", specifier = "==0.1.8" },
     { name = "playground", specifier = ">=0.2.0" },
 ]
 
