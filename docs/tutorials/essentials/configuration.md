@@ -6,7 +6,7 @@
 
 Sometimes, when doing research or building a project, you may need to reduce the number of timesteps an environment runs for, swap the physics backend to suit your hardware, or adjust an upstream setting to match your experiment.
 
-We can do this using the [`MjxPlaygroundConfig`][mujorax.MjxPlaygroundConfig] class. It extends Envrax's `EnvConfig` with a single extra field, `config_overrides`, which flows directly to MuJoCo Playground's underlying `ConfigDict` — giving you one place to tweak all the environment settings you need!
+We can do this using the [`MjxPlaygroundConfig`][mujorax.MjxPlaygroundConfig] class. It extends Envrax's `EnvConfig` with an `impl` selector for the MJX backend and a `config_overrides` dictionary that flows directly to MuJoCo Playground's underlying `ConfigDict` — giving you one place to tweak all the environment settings you need!
 
 In this tutorial, we'll focus on this config object and explore how to adapt it.
 
@@ -17,6 +17,7 @@ Here's a quick overview of its fields:
 | Field | Type | Default | Description |
 | --- | --- | --- | --- |
 | `max_steps` | `int` | `1000` | Maximum steps per episode before `done` is forced `True`. OR'd with Playground's own termination signal. |
+| `impl` | `Literal["jax", "warp"]` | `"jax"` | MJX backend. `"jax"` runs on CPU and any XLA device; `"warp"` uses NVIDIA Warp FFI and requires CUDA. |
 | `config_overrides` | `Dict[str, Any]` | `{}` | Flat overrides forwarded to `mujoco_playground.registry.load`. Nested fields use dotted keys. |
 
 ## Per-Environment Max Steps
@@ -49,7 +50,6 @@ These include:
 | `sim_dt` | `float` | varies (`0.0025`–`0.02`) | Physics simulation timestep. `n_substeps = ctrl_dt / sim_dt` substeps run per agent action. |
 | `episode_length` | `int` | `1000` | Playground's own episode length (separate from `max_steps`). |
 | `action_repeat` | `int` | `1` | How many times each action is repeated before the next agent decision. |
-| `impl` | `str` | `"warp"` | Physics implementation — `"warp"` (CUDA) or `"jax"` (CPU/GPU via XLA). Auto-detected on CPU-only systems (see below). |
 | `vision` | `bool` | `False` | Toggles pixel observations. **Not currently supported** — every environment raises `NotImplementedError` if set to `True`. |
 | `naconmax` | `int` | varies (`0`–`200_000`) | MJX contact-buffer preallocation, forwarded to `mjx.make_data`. MJX needs a static upper bound. Raise this if you hit `nacon` overflow at runtime. |
 | `njmax` | `int` | varies (`0`–`250`) | MJX constraint-row buffer preallocation, also forwarded to `mjx.make_data`. Each contact contributes a normal row plus friction rows, and joint limits and equality constraints add further rows on top. Raise this if you hit `nefc` overflow at runtime. |
@@ -74,34 +74,26 @@ These include:
 
 Changing an environment's config is easy. Simply pass a new dictionary to the `MjxPlaygroundConfig` class using the `config_overrides` parameter.
 
-For example, if we wanted to slow down the control rate and use the JAX backend explicitly, we'd do the following:
+For example, if we wanted to slow down the control rate, we'd do the following:
 
 ```python
 config = MjxPlaygroundConfig(
-    config_overrides={
-        "ctrl_dt": 0.02,
-        "impl": "jax",
-    },
+    config_overrides={"ctrl_dt": 0.02},
 )
 env = envrax.make("mjx/cartpole_balance-v0", config=config)
 ```
 
-## The `impl` Auto-Fallback
+## Choosing the MJX Backend
 
-Playground defaults `impl="warp"` which requires a CUDA backend. On CPU-only systems Mujorax silently rewrites this to `impl="jax"` so environments construct successfully without GPU hardware:
+Mujorax defaults to `impl="jax"`, which runs on CPU and any XLA device without extra hardware requirements. If you have a CUDA GPU and want the Warp FFI backend, set `impl="warp"` directly on the config:
 
 ```python
-# CPU-only system — automatically picks impl="jax"
-env = envrax.make("mjx/cartpole_balance-v0")
-
-# Override is honoured even on CPU — but will fail at first step if no CUDA
+# CUDA via NVIDIA Warp
 env = envrax.make(
     "mjx/cartpole_balance-v0",
-    config=MjxPlaygroundConfig(config_overrides={"impl": "warp"}),
+    config=MjxPlaygroundConfig(impl="warp"),
 )
 ```
-
-The fallback only fires if you have NOT explicitly set `impl` in `config_overrides`. Anything you manually set is still preserved.
 
 ## Recap
 
@@ -109,10 +101,10 @@ And that's the config! Nice job! :clap:
 
 To recap:
 
-- `MjxPlaygroundConfig` extends Envrax's `EnvConfig` with one extra field, `config_overrides`, which forwards arbitrary keys to MuJoCo Playground's underlying `ConfigDict`.
+- `MjxPlaygroundConfig` extends Envrax's `EnvConfig` with an `impl` backend selector and a `config_overrides` dictionary that forwards arbitrary keys to MuJoCo Playground's underlying `ConfigDict`.
 - Use `max_steps` to shorten or lengthen episodes at the Mujorax wrapper level.
-- Use `config_overrides` to tweak any of the universal Playground keys (`ctrl_dt`, `sim_dt`, `episode_length`, `action_repeat`, `impl`, `vision`, `naconmax`, `njmax`) — defaults vary per environment and live on each environment's catalogue page.
-- The `impl` key auto-falls back from `"warp"` to `"jax"` on CPU-only systems, but anything you set explicitly is preserved.
+- Use `impl` to pick the MJX backend — `"jax"` (default, CPU/XLA) or `"warp"` (CUDA via NVIDIA Warp).
+- Use `config_overrides` to tweak any of the universal Playground keys (`ctrl_dt`, `sim_dt`, `episode_length`, `action_repeat`, `vision`, `naconmax`, `njmax`) — defaults vary per environment and live on each environment's catalogue page.
 
 ## Next Steps
 

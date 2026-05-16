@@ -168,7 +168,7 @@ obs_list, state_list = multi_vec.reset(jax.random.PRNGKey(0))
 Every Mujorax environment shares the same state and config types:
 
 - `MjxPlaygroundState` — holds the `rng` key, `step` index, `done` flag, and the embedded MuJoCo Playground `pg_state` with full physics data.
-- `MjxPlaygroundConfig` — holds a `max_steps` value (required by Envrax) plus an optional `config_overrides` dictionary that gets forwarded to the underlying MuJoCo Playground for advanced customisation.
+- `MjxPlaygroundConfig` — holds a `max_steps` value (required by Envrax), an `impl` selector for the MJX backend (`"jax"` or `"warp"`), and an optional `config_overrides` dictionary that gets forwarded to the underlying MuJoCo Playground for advanced customisation.
 
 Anywhere you need to inspect the physics state (joint positions, contact forces, sensor readings), use the `state.pg_state.data` value. The full surface is documented in the [API reference](../../api/environments/base.md).
 
