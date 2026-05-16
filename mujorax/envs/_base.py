@@ -1,5 +1,5 @@
 from dataclasses import field
-from typing import Any, Dict, Tuple
+from typing import Any, Dict, Literal, Tuple
 
 import chex
 import jax
@@ -9,14 +9,6 @@ import numpy as np
 from envrax import EnvConfig, EnvState, JaxEnv
 from envrax.spaces import Box
 from mujoco_playground._src import mjx_env
-
-
-def _has_cuda() -> bool:
-    """Return True if a CUDA backend is registered with JAX."""
-    try:
-        return len(jax.devices("cuda")) > 0
-    except RuntimeError:
-        return False
 
 
 @chex.dataclass
@@ -46,13 +38,16 @@ class MjxPlaygroundConfig(EnvConfig):
 
     Parameters
     ----------
-    max_steps : int
-        Maximum number of steps per episode. Default is 1000.
-    config_overrides : Dict[str, Any]
+    max_steps : int (optional)
+        Maximum number of steps per episode. Default is `1000`.
+    impl : Literal["jax", "warp"] (optional)
+        MJX backend to use. When `jax`, uses pure JAX. When `warp` uses NVIDIA Warp FFI. Default is `jax`
+    config_overrides : Dict[str, Any] (optional)
         Flat overrides forwarded to `mujoco_playground.registry.load`.
         Use dotted keys for nested fields (e.g. `"reward_config.scale"`).
     """
 
+    impl: Literal["jax", "warp"] = "jax"
     config_overrides: Dict[str, Any] = field(default_factory=dict)
 
 
@@ -88,19 +83,13 @@ class MjxPlaygroundEnv(JaxEnv[Box, Box, MjxPlaygroundState, MjxPlaygroundConfig]
         """
         Build the override dict passed to `mujoco_playground.registry.load`.
 
-        Auto-sets `impl="jax"` on CPU-only systems unless the user has
-        already pinned `impl` via `config.config_overrides`. Playground
-        defaults to `impl="warp"` which requires a CUDA backend.
-
         Returns
         -------
         overrides : Dict[str, Any] | None
             Resolved overrides, or `None` when empty.
         """
         overrides = dict(self.config.config_overrides or {})
-        if "impl" not in overrides and not _has_cuda():
-            overrides["impl"] = "jax"
-
+        overrides.setdefault("impl", self.config.impl)
         return overrides or None
 
     def _extract_obs(self, pg_state: mjx_env.State) -> jax.Array:
