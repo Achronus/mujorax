@@ -31,5 +31,5 @@ We recommend completing the tutorials in order below to get the most out of this
 | # | Tutorial | Teaches |
 | - | --- | --- |
 | 1 | [Using Environments](essentials/using-environments.md) | How to create and use Mujorax environments |
-| 2 | [Configuration](essentials/configuration.md) | Tweaking the `MjxPlaygroundConfig` for Playground overrides, and the CPU/CUDA `impl` fallback |
+| 2 | [Configuration](essentials/configuration.md) | Tweaking the `MjxPlaygroundConfig` for Playground overrides, and choosing the MJX `impl` backend |
 | 3 | [Rendering](essentials/rendering.md) | Capturing RGB frames with `render(state)` and saving rollouts as videos |
