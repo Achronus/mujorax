@@ -7,6 +7,7 @@ For flexibility, we've organised the reference by category, each covering a dist
 Here's a quick overview:
 
 - **Environments** - the wrapped MuJoCo Playground environments. Starting with the [base classes](environments/base.md) for the `MjxPlaygroundEnv` wrapper and its associated state and config dataclasses, then drilling into the individual environment families.
+- **[Rendering](render.md)** - the `StadiumRenderer` for visualising multiple agents in a single composite scene image.
 - **[Registry](registry.md)** - the supported environment suites that are automatically registered with [Envrax's [:material-arrow-right-bottom:]](https://envrax.achronus.dev/) registry when `mujorax` is imported.
 
 ## Unsure Where to Start?

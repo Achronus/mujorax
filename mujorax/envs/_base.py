@@ -1,4 +1,6 @@
+import importlib
 from dataclasses import field
+from pathlib import Path
 from typing import Any, Dict, Literal, Tuple
 
 import chex
@@ -78,6 +80,33 @@ class MjxPlaygroundEnv(JaxEnv[Box, Box, MjxPlaygroundState, MjxPlaygroundConfig]
             config_overrides=self._resolve_overrides(),
         )
         _ = self.observation_space  # raises NotImplementedError for dict obs
+
+    @property
+    def xml_path(self) -> Path:
+        """
+        Path to the MJCF XML file backing this Playground environment.
+
+        Used by composite render scenes that need to compose multiple
+        copies of the environment's MJCF.
+
+        Returns
+        -------
+        xml_path : Path
+            Absolute path to the env's MJCF file.
+
+        Raises
+        ------
+        attr_missing : AttributeError
+            If the underlying Playground module does not expose `_XML_PATH`.
+        """
+        module = importlib.import_module(type(self._env).__module__)
+        if not hasattr(module, "_XML_PATH"):
+            raise AttributeError(
+                f"Could not locate XML path for {type(self._env).__name__}; "
+                f"module {module.__name__!r} has no `_XML_PATH` attribute."
+            )
+
+        return Path(str(module._XML_PATH))
 
     def _resolve_overrides(self) -> Dict[str, Any] | None:
         """
