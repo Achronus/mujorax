@@ -111,6 +111,85 @@ env = envrax.make(
 
 Behind the scenes, [`RecordVideo` [:material-arrow-right-bottom:]](https://envrax.achronus.dev/api/wrappers/passthrough/#envrax.wrappers.record_video.RecordVideo) calls `render()` on every step — so the same `jit_compile=False` rule applies. For output paths, episode triggers, and other knobs, refer to Envrax's wrapper docs.
 
+## Visualising Multiple Agents in One Scene
+
+???+ api "API Docs"
+
+    [`mujorax.render.stadium.StadiumRenderer`](../../api/render.md#mujorax.render.stadium.StadiumRenderer)
+
+When you want to visualise `N` agents from the same environment side-by-side you can use `StadiumRenderer`. It composes `N` copies of an environment's MJCF into one render-only scene and rasterises them in a single image.
+
+The renderer holds its own regular `mj_data` — no MJX physics happens inside it. You can step your environments however you like (e.g., via a single-environment or `VecEnv`), then hand the resulting state(s) to the renderer for a one-shot composite render.
+
+```python
+import envrax
+import imageio.v3 as iio
+import jax
+
+from mujorax import StadiumRenderer
+
+# Vectorise the env (jit_compile=False for render compatibility)
+vec_env = envrax.make_vec("mjx/cartpole_balance-v0", n_envs=4, jit_compile=False)
+
+# Stadium infers `n_slots` from the VecEnv automatically
+renderer = StadiumRenderer(env=vec_env, spacing=5.0)
+
+# Step once and render the composite scene
+_, batched_state = vec_env.reset(jax.random.PRNGKey(0))
+renderer.update_batched(batched_state)
+frame = renderer.render()
+iio.imwrite("stadium.png", frame)
+```
+
+Pass a bare `MjxPlaygroundEnv` instead if you want a different number of slots than your `VecEnv` width — in that case supply `n_slots` explicitly:
+
+```python
+# Render-only stadium with 8 slots, populated from any state source
+env = envrax.make("mjx/cartpole_balance-v0", jit_compile=False)
+renderer = StadiumRenderer(env=env, n_slots=8)
+
+# Populate by hand with 8 single-env states (e.g. from 8 separate rollouts)
+states = [env.reset(jax.random.PRNGKey(i))[1] for i in range(8)]
+renderer.update(states)
+frame = renderer.render()
+```
+
+The output is a single `(480, 640, 3)` `uint8` RGB image showing all four cartpoles, each on its own slot of the shared floor.
+
+### Updating the Renderer
+
+`StadiumRenderer` supports two update paths depending on the shape of your state:
+
+```python
+# From a VecEnv state (leading dim == n_slots)
+renderer.update_batched(batched_state)
+
+# From a list of single-env states
+renderer.update([state_0, state_1, state_2, state_3])
+```
+
+Both copy `qpos` / `qvel` from each slot's state into the composite `mj_data` and call `mj_forward` to refresh derived fields. Then `renderer.render()` produces one frame of the whole stadium. We highly recommend using `make_vec` or `VecEnv` when possible!
+
+### Saving a Stadium Rollout
+
+Stadium rendering composes cleanly with `imageio` for video output. This follows the same pattern as single-environment rollouts, but each frame shows every agent at once:
+
+```python
+frames = []
+for _ in range(150):
+    rng, action_rng = jax.random.split(rng)
+    actions = vec_env.action_space.sample(action_rng)
+    _, batched_state, _, _, _ = vec_env.step(batched_state, actions)
+    renderer.update_batched(batched_state)
+    frames.append(renderer.render())
+
+iio.imwrite("stadium_rollout.mp4", frames, fps=30)
+```
+
+??? tip "When to use `StadiumRenderer` vs per-slot `env.render`"
+
+    Use `StadiumRenderer` when you want **one image showing every agent** for dashboards, demo videos, or visual debugging of a fleet. For **per-agent videos** (e.g., one video per trainer), use `env.render(state)` instead for each individual state - it's cheaper and gives you full per-agent zoom.
+
 ## Adjusting Frame Size
 
 Need bigger frames? Or smaller ones? `render()` accepts `height` and `width` keyword arguments — pass whatever pixel dimensions you'd like and the underlying MuJoCo renderer will produce a frame at exactly that resolution:
@@ -137,6 +216,7 @@ To recap:
 - Save single frames with `imageio.v3.imwrite(...)`; save rollouts as `.mp4` or `.gif` by collecting frames in a list and encoding in one call.
 - Envrax's `RecordVideo` wrapper automates per-step capture for any environment constructed with `jit_compile=False`.
 - Default Playground render size is `240×320`; pass `height` and `width` to `render()` for custom dimensions.
+- `StadiumRenderer` composes `n_slots` copies of one environment into a single render-only MJCF; `update_batched` / `update` populate it from any source of states and `render()` emits one composite frame.
 
 ## Where Next?
 

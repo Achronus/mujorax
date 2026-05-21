@@ -94,6 +94,7 @@ nav:
       - Reacher: api/environments/reacher.md
       - Swimmer: api/environments/swimmer.md
       - Walker: api/environments/walker.md
+    - Rendering: api/render.md
     - Registry: api/registry.md
   - License: license.md
 
