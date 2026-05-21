@@ -1,5 +1,7 @@
 from envrax import register_suite
 
+from mujorax.render import StadiumRenderer
+
 from mujorax.envs import (
     AcrobotSwingupEnv,
     AcrobotSwingupSparseEnv,
@@ -60,6 +62,7 @@ __all__ = [
     "PointMassEnv",
     "ReacherEasyEnv",
     "ReacherHardEnv",
+    "StadiumRenderer",
     "SwimmerSwimmer6Env",
     "WalkerRunEnv",
     "WalkerStandEnv",
