@@ -1,6 +1,6 @@
 [project]
 name = "mujorax"
-version = "0.1.5"
+version = "0.1.6"
 description = "A JAX-native MuJoCo environment suite for Envrax."
 authors = [{ name = "Ryan Partridge", email = "codemonkey37@proton.me" }]
 readme = "README.md"
@@ -21,7 +21,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Typing :: Typed",
 ]
-dependencies = ["envrax==0.1.9", "mujoco-mjx==3.8.1", "playground>=0.2.0"]
+dependencies = ["envrax==0.1.10", "mujoco-mjx==3.8.1", "playground>=0.2.0"]
 
 [project.urls]
 Homepage = "https://github.com/Achronus/mujorax"
